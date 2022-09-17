@@ -3,6 +3,7 @@ package com.example.hackathon_final;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,12 +24,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setContentView(R.layout.activity_maps);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+    
+
 
     /**
      * Manipulates the map once available.
@@ -44,8 +48,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng hopkinsCafe = new LatLng(39.3315, -76.6197);
+        LatLng nolans = new LatLng(39.3285, -76.6168);
+        LatLng midPoint = new LatLng((39.3315+39.3285)/2, (-76.6197-76.6168)/2);
+        mMap.addMarker(new MarkerOptions().position(nolans).title("Nolan's"));
+        mMap.addMarker(new MarkerOptions().position(hopkinsCafe).title("Hopkins Cafe"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(midPoint,17f));
+
     }
 }
